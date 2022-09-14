@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  mysqldb:
+    image: mysql:5.7
+    restart: always
+    networks:
+      - compose-bridge
+    environment:
+      MYSQL_DATABASE: nodedb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - mysql_db:/var/lib/mysql   
+  app:
+    build: .
+    command: "npm start" 
+    container_name: alura_orm_node
+    restart: always
+    networks:
+      - compose-bridge
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/app 
+    depends_on:
+      - mysqldb
+networks:
+  compose-bridge:
+    driver: bridge
+volumes: 
+  mysql_db:
