@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
     res
         .status(200)
-        .send('Bora Estudar - novo curso de node');
+        .send('Olá');
 });
 
 export default app;
