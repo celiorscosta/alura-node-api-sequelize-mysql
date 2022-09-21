@@ -5,13 +5,10 @@ const niveis = require('./niveisRoute');
 const turmas = require('./turmasRoute');
 
 module.exports = app => {
-  app.use(bodyParser.json());
-  app.get('/', (req, res) => {
-    res.status(200).send("Olá.");
-  });
   app.use(
+    bodyParser.json(),
     pessoas,
-    niveis,
+    niveis, 
     turmas
   );
 }
